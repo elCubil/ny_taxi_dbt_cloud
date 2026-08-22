@@ -9,7 +9,10 @@ models:
         tests:
           - not_null
           - accepted_values:
-              values: [1,2,4]
+              arguments: 
+                values: [1,2,4]
+                quote: false
+              
 
       - name: pickup_datetime
         description: Timestamp when the meter was engaged.
@@ -30,7 +33,9 @@ models:
         description: Numeric code signifying how the passenger paid for the trip.
         tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6]
+              arguments: 
+                values: [1, 2, 3, 4, 5, 6]
+                quote: false
 
   - name: stg_ny_taxi__green_trips
     description: Staging model for NYC green taxi trip data, cleaned and renamed from the raw source.
@@ -40,7 +45,9 @@ models:
         tests:
           - not_null
           - accepted_values:
-              values: [1,2]
+              arguments: 
+                values: [1,2]
+                quote: false
 
       - name: pickup_datetime
         description: Timestamp when the meter was engaged.
@@ -61,4 +68,6 @@ models:
         description: Numeric code signifying how the passenger paid for the trip.
         tests:
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6]
+              arguments: 
+                values: [1, 2, 3, 4, 5, 6]
+                quote: false
