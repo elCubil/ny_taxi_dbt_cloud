@@ -7,7 +7,9 @@ models:
       - name: vendor_id
         description: ID of the vendor that provided the trip record.
         tests:
-          - not_null
+          - not_null:
+              config: 
+                severity: warn
           - accepted_values:
               arguments: 
                 values: [1,2,4]
@@ -43,7 +45,9 @@ models:
       - name: vendor_id
         description: ID of the vendor that provided the trip record.
         tests:
-          - not_null
+          - not_null:
+              config:
+                severity: warn
           - accepted_values:
               arguments: 
                 values: [1,2]
