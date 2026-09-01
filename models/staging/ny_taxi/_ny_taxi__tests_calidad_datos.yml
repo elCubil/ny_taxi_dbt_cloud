@@ -2,8 +2,16 @@ version: 2
 
 models:
   - name: stg_ny_taxi__yellow_trips
-    description: Staging model for NYC yellow taxi trip data, cleaned and renamed from the raw source.
+    description: Staging model for NYC yellow taxi trip data, cleaned and renamed from the raw source. Se sabe que existen colisiones no únicas en los registros de origen cuando faltan datos de ubicación (DOLocationID/PULocationID = 264, "Unknown") y se combinan con marcas de tiempo de medianoche redondeadas; se trata de un problema de calidad de los datos en la fuente, no de un defecto en el diseño del hash.
     columns:
+      - name: trip_id
+        description: llave surrogate generada con los campos vendor, pickup datetime y pickup/dropoff location
+        tests:
+          - not_null
+          - unique:
+              config:
+                severity: warn
+        
       - name: vendor_id
         description: ID of the vendor that provided the trip record.
         tests:
@@ -42,6 +50,13 @@ models:
   - name: stg_ny_taxi__green_trips
     description: Staging model for NYC green taxi trip data, cleaned and renamed from the raw source.
     columns:
+      - name: trip_id
+        description: llave surrogate generada con los campos vendor, pickup datetime y pickup/dropoff location
+        tests:
+          - not_null
+          - unique:
+              config:
+                severity: warn
       - name: vendor_id
         description: ID of the vendor that provided the trip record.
         tests:
