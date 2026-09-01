@@ -3,7 +3,8 @@ WITH t1 AS(
 ),
 
 renamed AS(
-    SELECT 
+    SELECT
+    {{ dbt_utils.generate_surrogate_key(['VendorID', 'lpep_pickup_datetime', 'PULocationID', 'DOLocationID'])}} AS trip_id,
     VendorID AS vendor_id,
     lpep_pickup_datetime AS pickup_datetime,
     lpep_dropoff_datetime AS dropoff_datetime,
